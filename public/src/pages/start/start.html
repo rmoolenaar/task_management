@@ -1,0 +1,82 @@
+<!--
+  Generated template for the Velya page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar color="dark" hideBackButton>
+        <ion-title>Welcome at Task Management</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+    <ion-card>
+        <ion-card-header>
+            <b>New at Task Management?</b>
+        </ion-card-header>
+        <ion-card-content>
+            <form [formGroup]="registerForm">
+                <ion-list>
+                    <p>Register</p>
+
+                    <ion-item>
+                        <ion-label floating>E-mail</ion-label>
+                        <ion-input type="email" formControlName="username"></ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label floating>Full name</ion-label>
+                        <ion-input type="text" formControlName="fullname"></ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label floating>Password</ion-label>
+                        <ion-input type="password" formControlName="password"></ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label floating>Repeat password</ion-label>
+                        <ion-input type="password" formControlName="password2"></ion-input>
+                    </ion-item>
+                </ion-list>
+                <div padding-top text-right>
+                    <button ion-button small color="primary" [disabled]="!registerForm.valid" (click)="register()">
+                        Register <ion-icon name="play"></ion-icon>
+                    </button>
+                </div>
+            </form>
+        </ion-card-content>
+    </ion-card>
+    <ion-card>
+        <ion-card-header>
+            <b>Login at Task Management</b>
+        </ion-card-header>
+        <ion-card-content>
+            <form [formGroup]="loginForm">
+                <ion-list>
+                    <p>Log in</p>
+
+                    <ion-item>
+                        <ion-label floating>E-mail</ion-label>
+                        <ion-input type="email" formControlName="l_username"></ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label floating>Password</ion-label>
+                        <ion-input type="password" formControlName="l_password"></ion-input>
+                    </ion-item>
+                </ion-list>
+                <div padding-top text-right>
+                    <button ion-button small color="primary" [disabled]="!loginForm.valid" (click)="login()">
+                        Login <ion-icon name="play" ></ion-icon>
+                    </button>
+                </div>
+                <div padding-top text-right>
+                    <button ion-button small color="danger" (click)="sendpassword()" [disabled]="!l_username.valid">
+                        Forgot password <ion-icon name="play"></ion-icon>
+                    </button>
+                </div>
+            </form>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

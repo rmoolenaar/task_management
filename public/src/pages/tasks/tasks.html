@@ -1,0 +1,103 @@
+<!--
+  Generated template for the Tasks page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Tasks for {{currentUser.name}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+    <ion-grid>
+        <!-- Filterin row -->
+        <ion-row>
+            <ion-col>
+                <h1>Search</h1>
+                <!-- Search form -->
+                <form [formGroup]="filterForm">
+                    <ion-list>
+                        <ion-item>
+                            <ion-label>End date between</ion-label>
+                            <ion-datetime displayFormat="YYYY-MM-DD" formControlName="endDateStart"></ion-datetime>
+                        </ion-item>
+
+                        <ion-item>
+                            <ion-label>and</ion-label>
+                            <ion-datetime displayFormat="YYYY-MM-DD" formControlName="endDateEnd"></ion-datetime>
+                        </ion-item>
+                    </ion-list>
+                    <div padding-top text-left>
+                        <button ion-button small color="primary" [disabled]="!filterForm.valid" (click)="searchTask()">
+                            Search
+                        </button>
+                    </div>
+                </form>
+            </ion-col>
+        </ion-row>
+
+        <!-- Display row -->
+        <ion-row>
+
+            <ion-col>
+                <h1>Tasks</h1>
+                <!-- New button -->
+                <button ion-button small color="secondary" (click)="newTask()">New</button>
+                <!-- List tasks -->
+                <ion-item-group no-lines>
+                    <div *ngFor="let task of tasks; let i = index">
+                        <ion-item (click)="openTask(task)">
+                            {{task.name}} ({{task.endDate | date: 'yyyy-MM-dd HH:mm'}})
+                            <p>{{task.description}}</p>
+                        </ion-item>
+                    </div>
+                    <div *ngIf="tasks.length == 0">
+                        <ion-item>
+                            <p>No tasks present at the moment.</p>
+                        </ion-item>
+                    </div>
+                </ion-item-group>
+            </ion-col>
+
+            <ion-col>
+                <!-- Edit / create form -->
+                <form [formGroup]="taskForm" *ngIf="currentTask.user_id">
+                    <ion-list>
+                        <p>Task</p>
+
+                        <ion-item>
+                            <ion-label floating>Task name</ion-label>
+                            <ion-input type="text" formControlName="name"></ion-input>
+                        </ion-item>
+
+                        <ion-item>
+                            <ion-label>End date</ion-label>
+                            <ion-datetime displayFormat="YYYY-MM-DD HH:mm" formControlName="endDate"></ion-datetime>
+                        </ion-item>
+
+                        <ion-item>
+                            <ion-label floating>Description</ion-label>
+                            <ion-input type="text" formControlName="description"></ion-input>
+                        </ion-item>
+                    </ion-list>
+                    <div padding-top text-right>
+                        <button ion-button small color="primary" [disabled]="!taskForm.valid" (click)="editTask()">
+                            Save
+                        </button>
+                        <button ion-button small color="danger" *ngIf="currentTask.id" (click)="deleteTask()">
+                            Delete
+                        </button>
+                    </div>
+                </form>
+            </ion-col>
+
+        </ion-row>
+    </ion-grid>
+
+</ion-content>
