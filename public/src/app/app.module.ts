@@ -1,5 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { BrowserModule } from "@angular/platform-browser";
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { Http, HttpModule, RequestOptions } from '@angular/http'
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
@@ -10,16 +11,16 @@ import { ApiService } from '../services/private_api';
 import { PublicApiService } from '../services/public_api';
 
 export function authFactory(http: Http, options: RequestOptions) {
-    return new AuthHttp(new AuthConfig({
-        // Config options if you want
-    }), http, options);
+  return new AuthHttp(new AuthConfig({
+    // Config options if you want
+  }), http, options);
 };
 
 // Include this in your ngModule providers
 export const authProvider = {
-    provide: AuthHttp,
-    deps: [Http, RequestOptions],
-    useFactory: authFactory
+  provide: AuthHttp,
+  deps: [Http, RequestOptions],
+  useFactory: authFactory
 };
 
 @NgModule({
@@ -29,6 +30,7 @@ export const authProvider = {
     TasksPage
   ],
   imports: [
+    BrowserModule,
     HttpModule,
     FormsModule,
     IonicModule.forRoot(TaskManagementApp)
@@ -39,6 +41,6 @@ export const authProvider = {
     StartPage,
     TasksPage
   ],
-  providers: [ApiService, PublicApiService, authProvider, {provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [ApiService, PublicApiService, authProvider, { provide: ErrorHandler, useClass: IonicErrorHandler }]
 })
-export class AppModule {}
+export class AppModule { }

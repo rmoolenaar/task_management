@@ -25,8 +25,8 @@ var server = http.createServer(app);
  * Start web socket serve
  */
 
-const SocketServer = require('ws').Server;
-const wss = new SocketServer({ server });
+const WebSocket = require('ws');
+const wss = new WebSocket.Server({ server });
 
 wss.on('connection', (ws) => {
     console.log('Client connected');
