@@ -22,6 +22,35 @@ app.set('port', port);
 var server = http.createServer(app);
 
 /**
+ * Start web socket serve
+ */
+
+const SocketServer = require('ws').Server;
+const wss = new SocketServer({ server });
+
+wss.on('connection', (ws) => {
+    console.log('Client connected');
+    ws.on('close', () => console.log('Client disconnected'));
+});
+
+// wss.on('error',(e)=>{
+//     switch (e.code){
+//     case 'ECONNREFUSED':
+//         console.log(e);
+//         break;
+//     default:
+//         console.log(e);
+//         break;
+//     }
+// });
+
+// setInterval(() => {
+//     wss.clients.forEach((client) => {
+//         client.send(new Date().toTimeString());
+//     });
+// }, 1000);
+
+/**
  * Listen on provided port, on all network interfaces.
  */
 
