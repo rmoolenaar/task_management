@@ -44,7 +44,8 @@
   <script src="build/main.js"></script>
 
   <script>
-    var ws = new WebSocket('ws://localhost:3000');
+    var HOST = location.origin.replace(/^http/, 'ws');
+    var ws = new WebSocket(HOST);
 
     ws.onmessage = function(event) {
       console.log(event.data);
