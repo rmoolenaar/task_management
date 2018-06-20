@@ -31,7 +31,7 @@
     "ws": "5.2.0"
   },
   "devDependencies": {
-    "mocha": "^3.2.0",
+    "mocha": "^5.2.0",
     "supertest": "^2.0.1"
   }
 }
