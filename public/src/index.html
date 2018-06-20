@@ -43,6 +43,13 @@
   <!-- The bundle js is generated during the build process -->
   <script src="build/main.js"></script>
 
+  <script>
+    var ws = new WebSocket('ws://localhost:3000');
+
+    ws.onmessage = function(event) {
+      console.log(event.data);
+    };
+  </script>
 </body>
 
 </html>
