@@ -49,6 +49,7 @@
 
     ws.onmessage = function(event) {
       console.log(event.data);
+      ws.send('Data received');
     };
   </script>
 </body>
